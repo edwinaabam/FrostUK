@@ -1,2 +1,7 @@
 .env
+reports/
+*.csv
+frostenv/
+raw_data/
+
 
