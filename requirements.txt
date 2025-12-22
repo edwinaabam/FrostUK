@@ -8,3 +8,5 @@ fastapi
 pydantic
 uvicorn
 dotenv
+streamlit
+requests

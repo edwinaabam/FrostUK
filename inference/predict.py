@@ -43,11 +43,11 @@ def predict(req: Item):
         data = pd.DataFrame(req.records)
         cleaned_data = clean_data(data)
 
-        model_path = os.path.join(os.path.dirname(__file__), '..', 'model', 'rf_model.pkl')
+        model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'lr_model.pkl')
         with open(model_path, 'rb') as f:
             model = pickle.load(f)
 
-        schema_path = os.path.join(os.path.dirname(__file__), '..', 'model', 'schema.json')
+        schema_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'schema.json')
         with open(schema_path, 'r') as f:
             feature = json.load(f)
             main_features = feature['features']
