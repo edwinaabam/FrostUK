@@ -64,60 +64,62 @@ Core Data Sources
 
     - Product name and category (e.g. bakery, meat, dairy, beverages)
 
-- Shelf-life in days, which is critical for waste and expiry risk
+    - Shelf-life in days, which is critical for waste and expiry risk
 
-Supplier identifiers to reflect sourcing constraints
+    - Supplier identifiers to reflect sourcing constraints
 
 - **Weekly Sales Data**
 
-Units sold per product, per store, per week (target variable)
+    - Units sold per product, per store, per week (target variable)
 
-Marketing spend and promotional activity
+    - Marketing spend and promotional activity
 
-Wastage units to track losses from unsold stock
+    - Wastage units to track losses from unsold stock
 
 - **Store Information**
 
-Store location and region
+    - Store location and region
 
-Store size (floor area)
+    - Store size (floor area)
 
-Cold storage capacity, which limits how much perishable stock can be held
+    - Cold storage capacity, which limits how much perishable stock can be held
 
 - **Weather Data**
 
-Average temperature
+    - Average temperature
 
-Rainfall levels
+    - Rainfall levels
 
-Holiday indicators
+    - Holiday indicators
+      
 These variables help capture weather-driven and seasonal demand fluctuations.
 
 - **Supplier Information**
 
-Supplier lead times
+    - Supplier lead times
 
-Supply capacity constraints
+    - Supply capacity constraints
+    - 
 This reflects the fact that stock availability is not unlimited or instant.
 
-Why Multiple Data Sources Matter
+## Why Multiple Data Sources Matter
 
 Demand for perishable goods is rarely driven by a single factor. Instead, it is influenced by a combination of:
 
-Seasonality (e.g. Christmas, Easter, summer periods)
+- Seasonality (e.g. Christmas, Easter, summer periods)
 
-Weather conditions (temperature and rainfall)
+- Weather conditions (temperature and rainfall)
 
-Store characteristics (size, location, storage capacity)
+- Store characteristics (size, location, storage capacity)
 
-Promotions and pricing
+- Promotions and pricing
 
-Supply-side limitations
+- Supply-side limitations
 
 By integrating these datasets into a unified analytical view, the model is better able to reflect how demand behaves in practice, rather than relying on sales history alone.
 
-Target Variable
+## Target Variable
 
-Units_Sold
+- **Units_Sold**
 The model predicts the number of units expected to be sold for a given product, store, and time period.
 This prediction can then be used to guide inventory, procurement, and replenishment decisions.
