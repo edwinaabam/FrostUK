@@ -8,6 +8,7 @@ import os
 import uvicorn
 from dotenv import load_dotenv
 import json
+from pathlib import Path
 
 load_dotenv()
 
@@ -43,17 +44,28 @@ def predict(req: Item):
         data = pd.DataFrame(req.records)
         cleaned_data = clean_data(data)
 
-        model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'lr_model.pkl')
+        BASE_DIR = Path(__file__).resolve().parent.parent
+
+        #model_path = os.path.join(os.path.dirname(__file__), '..', 'model', 'lr_model.pkl')
+        model_path = BASE_DIR / "model" / "lr_model.pkl"
         with open(model_path, 'rb') as f:
             model = pickle.load(f)
 
-        schema_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'schema.json')
-        with open(schema_path, 'r') as f:
-            feature = json.load(f)
-            main_features = feature['features']
+        #schema_path = os.path.join(os.path.dirname(__file__), '..', 'model', 'schema.json')
+       # Load schema
+        schema_path = BASE_DIR / "model" / "schema.json"
+        with open(schema_path, "r") as f:
+            schema = json.load(f)
+            main_features = schema["features"]
 
-        cleaned_data = cleaned_data.reindex(columns = main_features, fill_value=0)
-        
+        # Preprocess input
+        cleaned_data = cleaned_data.fillna(0)
+
+        # Align features to training schema
+        cleaned_data = cleaned_data.reindex(
+        columns=main_features,
+        fill_value=0)
+
         pred = model.predict(cleaned_data)
 
         return {"predictions": pred.tolist()}

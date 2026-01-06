@@ -1,0 +1,23 @@
+{
+  "features": [
+    "Marketing_Spend",
+    "Discount_Percent",
+    "Wastage_Units",
+    "Price",
+    "Shelf_Life_Days",
+    "Store_Size",
+    "Avg_Temperature",
+    "Rainfall",
+    "Holiday_Flag",
+    "Lead_Time_Days",
+    "Supply_Capacity",
+    "Product_Category_Beverages",
+    "Product_Category_Dairy",
+    "Product_Category_Meat",
+    "Region_Midlands",
+    "Region_North East",
+    "Region_North West",
+    "Region_South East",
+    "Region_South West"
+  ]
+}

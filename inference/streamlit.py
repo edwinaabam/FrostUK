@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import os
 
 st.title("Perishable Goods Prediction")
 
@@ -46,19 +47,33 @@ if submitted:
             "Month": month,
             "Day": day
         }
-        api_url = "https://vfdfwz42-8000.uks1.devtunnels.ms/predict"
-        response = requests.post(url = api_url, json = {"records": [data]})
+
+        api_url = os.getenv("API_URL")
+        response = requests.post(
+            url=api_url,
+            json={"records": [data]}
+        )
 
         if response.status_code == 200:
             result = response.json()
-            result = result.get("predictions")
-            st.write(f"Estimated Unit Sold: {int(result[0])}")
+            predictions = result.get("predictions", [])
+
+            if predictions:
+                prediction = predictions[0]
+
+                # Handle nested list case: [[value]]
+                if isinstance(prediction, list):
+                    prediction = prediction[0]
+                    
+                st.write(f"Estimated Unit Sold: {int(prediction)}")
+            else:
+                st.error("No prediction returned from the model.")
+
         else:
             st.error(f"API Error: {response.status_code}")
 
     except Exception as e:
         st.error(str(e))
-
-
+        
 if __name__ == "__main__":
     pass
