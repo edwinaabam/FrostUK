@@ -9,19 +9,19 @@ A simple interactive demo is included to show how demand predictions can be gene
 
 ## Business Problem
 
-Seasonal and perishable products account for approximately 35% of FrostMart’s annual revenue, but they also represent one of the highest sources of operational risk.
+Seasonal and perishable products account for approximately **35% of FrostMart’s annual revenue**, but they also represent one of the highest sources of operational risk.
 
 Key challenges include:
 
-Over-stocking, which leads to food waste, markdown losses, and unnecessary storage costs
+- Over-stocking, which leads to food waste, markdown losses, and unnecessary storage costs
 
-Under-stocking, which results in missed sales opportunities, customer dissatisfaction, and reputational damage
+- Under-stocking, which results in missed sales opportunities, customer dissatisfaction, and reputational damage
 
-Weather-driven demand spikes, where sudden temperature changes can cause rapid increases in demand for chilled or seasonal items
+- Weather-driven demand spikes, where sudden temperature changes can cause rapid increases in demand for chilled or seasonal items
 
-Complex supply chain constraints, including limited supplier capacity, cold-storage requirements, and long lead times for certain products
+- Complex supply chain constraints, including limited supplier capacity, cold-storage requirements, and long lead times for certain products
 
-Together, these factors contribute to an estimated £12.2 million annual impact, split between excess inventory waste and lost revenue.
+Together, these factors contribute to an estimated **£12.2 million annual impact**, split between excess inventory waste and lost revenue.
 
 Traditional inventory planning methods struggle to handle this level of variability, particularly when weather, promotions, holidays, and regional differences interact.
 
@@ -45,10 +45,10 @@ Support evidence-based decision-making for procurement and supply chain planning
 
 If applied in a real operational setting, the approach demonstrated in this project could support:
 
-30–40% reduction in perishable food waste
+- 30–40% reduction in perishable food waste
 
-10–20% increase in seasonal revenue capture through improved availability
+- 10–20% increase in seasonal revenue capture through improved availability
 
-A shift from intuition-based planning to fully data-driven decision making
+- A shift from intuition-based planning to fully data-driven decision making
 
 These improvements also align with sustainability goals and UK regulatory expectations around food waste reduction.
