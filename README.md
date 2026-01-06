@@ -1,5 +1,5 @@
 # FrostUK
-Project Overview
+## Project Overview
 
 FrostMart is a large UK grocery retailer with over 800 stores nationwide, offering fresh produce, dairy, baked goods, and seasonal products such as Christmas and Easter specials. While these seasonal and perishable products are a major driver of customer loyalty and revenue, they also introduce significant operational challenges due to short shelf life, weather sensitivity, and unpredictable demand.
 
@@ -7,7 +7,7 @@ This project focuses on building a data-driven demand forecasting solution to he
 
 A simple interactive demo is included to show how demand predictions can be generated for different product and store scenarios.
 
-Business Problem
+## Business Problem
 
 Seasonal and perishable products account for approximately 35% of FrostMart’s annual revenue, but they also represent one of the highest sources of operational risk.
 
@@ -25,7 +25,7 @@ Together, these factors contribute to an estimated £12.2 million annual impact,
 
 Traditional inventory planning methods struggle to handle this level of variability, particularly when weather, promotions, holidays, and regional differences interact.
 
-Project Objective
+## Project Objective
 
 The primary goal of this project is to:
 
@@ -41,7 +41,7 @@ Prevent stock-outs during peak seasonal periods
 
 Support evidence-based decision-making for procurement and supply chain planning
 
-Expected Impact
+## Expected Impact
 
 If applied in a real operational setting, the approach demonstrated in this project could support:
 
