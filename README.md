@@ -124,3 +124,47 @@ By integrating these datasets into a unified analytical view, the model is bette
 
 The model predicts the number of units expected to be sold for a given product, store, and time period.
 This prediction can then be used to guide inventory, procurement, and replenishment decisions.
+
+
+## How the Model Works 
+
+The model is designed to estimate how many units of a perishable product are likely to be sold in a given week, based on patterns observed in historical data.
+
+Rather than relying on intuition or fixed rules, the model learns from past behaviour to understand how different factors influence demand.
+
+What the model looks at:
+
+For each product and store, the model considers information such as:
+
+- Product characteristics
+
+      - Product category (e.g. bakery, meat, dairy)
+
+      - Shelf-life, which affects urgency of purchase and waste risk
+
+      - Store characteristics
+
+Store size
+
+        - Cold storage capacity
+
+        - Geographic region
+
+- Time-related factors
+
+        - Week and month
+
+        - Seasonal effects such as holidays or festive periods
+
+- Weather conditions
+
+        - Average temperature
+
+        - Rainfall levels
+These help capture sudden changes in demand, especially for chilled or seasonal items.
+
+- Commercial factors
+
+        - Marketing spend and promotional activity
+
+        - Supplier capacity constraints
