@@ -99,7 +99,7 @@ These variables help capture weather-driven and seasonal demand fluctuations.
     - Supplier lead times
 
     - Supply capacity constraints
-    - 
+
 This reflects the fact that stock availability is not unlimited or instant.
 
 ## Why Multiple Data Sources Matter
@@ -121,5 +121,6 @@ By integrating these datasets into a unified analytical view, the model is bette
 ## Target Variable
 
 - **Units_Sold**
+
 The model predicts the number of units expected to be sold for a given product, store, and time period.
 This prediction can then be used to guide inventory, procurement, and replenishment decisions.
