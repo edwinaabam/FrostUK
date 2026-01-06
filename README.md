@@ -29,17 +29,17 @@ Traditional inventory planning methods struggle to handle this level of variabil
 
 The primary goal of this project is to:
 
-Use predictive modelling to forecast weekly demand for perishable seasonal products, enabling data-driven inventory and procurement decisions across FrostMart’s store network.
+**Use predictive modelling to forecast weekly demand for perishable seasonal products, enabling data-driven inventory and procurement decisions across FrostMart’s store network.**
 
 More specifically, the project aims to:
 
-Improve demand forecasting accuracy at both store and regional levels
+- Improve demand forecasting accuracy at both store and regional levels
 
-Reduce perishable food waste by aligning stock levels with expected demand
+- Reduce perishable food waste by aligning stock levels with expected demand
 
-Prevent stock-outs during peak seasonal periods
+- Prevent stock-outs during peak seasonal periods
 
-Support evidence-based decision-making for procurement and supply chain planning
+- Support evidence-based decision-making for procurement and supply chain planning
 
 ## Expected Impact
 
