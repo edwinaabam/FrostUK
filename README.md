@@ -13,13 +13,13 @@ Seasonal and perishable products account for approximately **35% of FrostMart’
 
 Key challenges include:
 
-- Over-stocking, which leads to food waste, markdown losses, and unnecessary storage costs
+- **Over-stocking**: which leads to food waste, markdown losses, and unnecessary storage costs
 
-- Under-stocking, which results in missed sales opportunities, customer dissatisfaction, and reputational damage
+- **Under-stocking**: which results in missed sales opportunities, customer dissatisfaction, and reputational damage
 
-- Weather-driven demand spikes, where sudden temperature changes can cause rapid increases in demand for chilled or seasonal items
+- **Weather-driven demand spikes**: where sudden temperature changes can cause rapid increases in demand for chilled or seasonal items
 
-- Complex supply chain constraints, including limited supplier capacity, cold-storage requirements, and long lead times for certain products
+- **Complex supply chain constraints**: including limited supplier capacity, cold-storage requirements, and long lead times for certain products
 
 Together, these factors contribute to an estimated **£12.2 million annual impact**, split between excess inventory waste and lost revenue.
 
