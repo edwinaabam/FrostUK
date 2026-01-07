@@ -161,6 +161,7 @@ For each product and store, the model considers information such as:
     - Average temperature
 
     - Rainfall levels
+      
 These help capture sudden changes in demand, especially for chilled or seasonal items.
 
 - Commercial factors
@@ -168,3 +169,80 @@ These help capture sudden changes in demand, especially for chilled or seasonal 
     - Marketing spend and promotional activity
 
     - Supplier capacity constraints
+ 
+
+### What the Model Produces
+
+The output of the model is:
+
+A weekly forecast of units sold for a specific product at a specific store.
+
+This forecast can then be used to:
+
+- guide how much stock should be ordered
+
+- adjust inventory levels ahead of seasonal peaks
+
+- reduce waste caused by excess stock
+
+- avoid lost sales due to stock-outs
+
+
+### Why a Regression-Based Approach Was Used
+
+Regression models are well suited to this problem because they:
+
+- handle multiple influencing factors at once
+
+- are transparent and easy to interpret
+
+- perform well for continuous outcomes like units sold
+
+- allow comparison between simple baseline models and more advanced approaches
+
+The project begins with a **Linear Regression baseline** and explores more advanced models where needed to capture non-linear demand patterns. This ensures a balance between accuracy, interpretability, and practical usability.
+
+
+
+## How the Model Is Deployed
+
+The model is deployed as a lightweight, interactive demo to illustrate how demand predictions can be generated and explored in practice.
+
+The deployment consists of two main components:
+
+- **Prediction API (FastAPI)**  
+  The trained Linear Regression model is exposed via a REST API that accepts product, store, and contextual information and returns a demand forecast.  
+  A feature schema is used to ensure that incoming data is aligned consistently with how the model was trained.
+
+- **Interactive Interface (Streamlit)**  
+  A simple web interface allows users to adjust input variables (e.g. product details, store characteristics, weather conditions) and view predicted weekly demand.  
+  This interface is intended for demonstration and discussion purposes rather than direct operational use.
+
+This setup separates the modelling logic from the user interface, making the system easier to test, extend, and explain to non-technical stakeholders.
+
+
+## Results and Impact
+
+### Model Performance
+
+The project successfully delivers a working demand forecasting model capable of predicting weekly units sold for perishable seasonal products.
+
+Model evaluation focused on forecast accuracy using standard regression metrics (e.g. MAE and RMSE) and comparison against simple baseline approaches. Results show that the model captures key demand drivers such as seasonality, weather conditions, and store characteristics more effectively than naïve forecasting methods.
+
+While exact performance varies by product and context, the results demonstrate that a data-driven approach provides more reliable demand estimates than manual or rule-based planning alone.
+
+---
+
+### Potential Business Impact
+
+Although the model has not been deployed in live operations, the results suggest clear potential benefits if integrated into FrostMart’s planning workflows:
+
+- **Reduced over-stocking risk**, by aligning orders more closely with expected demand  
+- **Lower food waste**, particularly for short shelf-life products  
+- **Improved availability during peak seasonal periods**, reducing lost sales  
+- **More consistent planning decisions**, supported by data rather than intuition alone  
+
+The model is intended as a decision-support tool rather than a replacement for operational expertise. Further impact assessment would require live deployment and controlled testing within the supply chain.
+
+
+
