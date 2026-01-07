@@ -144,27 +144,27 @@ For each product and store, the model considers information such as:
 
 - Store characteristics
 
- - Store size
+     - Store size
 
- - Cold storage capacity
+     - Cold storage capacity
 
- - Geographic region
+     - Geographic region
 
 - Time-related factors
 
-  - Week and month
+    - Week and month
 
-  - Seasonal effects such as holidays or festive periods
+    - Seasonal effects such as holidays or festive periods
 
 - Weather conditions
 
-  - Average temperature
+    - Average temperature
 
-  - Rainfall levels
+    - Rainfall levels
 These help capture sudden changes in demand, especially for chilled or seasonal items.
 
 - Commercial factors
 
-  - Marketing spend and promotional activity
+    - Marketing spend and promotional activity
 
-  - Supplier capacity constraints
+    - Supplier capacity constraints
