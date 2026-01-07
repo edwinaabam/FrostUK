@@ -132,7 +132,7 @@ The model is designed to estimate how many units of a perishable product are lik
 
 Rather than relying on intuition or fixed rules, the model learns from past behaviour to understand how different factors influence demand.
 
-What the model looks at:
+### What the model looks at:
 
 For each product and store, the model considers information such as:
 
@@ -142,9 +142,9 @@ For each product and store, the model considers information such as:
 
   - Shelf-life, which affects urgency of purchase and waste risk
 
-  - Store characteristics
+- Store characteristics
 
-Store size
+ - Store size
 
  - Cold storage capacity
 
