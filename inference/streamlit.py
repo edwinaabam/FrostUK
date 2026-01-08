@@ -1,6 +1,10 @@
 import streamlit as st
 import requests
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 st.title("Perishable Goods Prediction")
 
@@ -48,7 +52,12 @@ if submitted:
             "Day": day
         }
 
-        api_url = os.getenv("API_URL")
+        api_url = os.getenv("API_URL", "http://127.0.0.1:3000/predict")
+
+        if not api_url:
+            st.error("API_URL is not set. Start FastAPI first.")
+            st.stop()
+
         response = requests.post(
             url=api_url,
             json={"records": [data]}
@@ -77,3 +86,7 @@ if submitted:
         
 if __name__ == "__main__":
     pass
+
+
+
+

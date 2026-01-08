@@ -1,3 +1,10 @@
+from pathlib import Path
+import sys
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from DataCleaning.preprocess import clean_data
@@ -8,7 +15,7 @@ import os
 import uvicorn
 from dotenv import load_dotenv
 import json
-from pathlib import Path
+
 
 load_dotenv()
 

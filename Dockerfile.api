@@ -1,0 +1,14 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# copy minimal api requirements
+COPY requirements_api.txt .
+RUN pip install --no-cache-dir -r requirements_api.txt
+
+# copy entire project (DataCleaning, model, inference)
+COPY . .
+
+EXPOSE 3000
+
+CMD ["uvicorn", "inference.predict:app", "--host", "0.0.0.0", "--port", "3000"]

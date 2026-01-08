@@ -242,7 +242,62 @@ Although the model has not been deployed in live operations, the results suggest
 - **Improved availability during peak seasonal periods**, reducing lost sales  
 - **More consistent planning decisions**, supported by data rather than intuition alone  
 
-The model is intended as a decision-support tool rather than a replacement for operational expertise. Further impact assessment would require live deployment and controlled testing within the supply chain.
+
+## Deployment
+
+The project is deployed as a lightweight, containerised demo consisting of two components:
+
+- **FastAPI prediction service**
+- **Streamlit user interface**
+
+Both components are run locally using Docker.
+
+---
+
+### Components
+
+#### Prediction API (FastAPI)
+
+- The trained regression model is exposed via a REST API.
+- The API:
+  - Accepts product, store, and contextual inputs as JSON
+  - Applies the same preprocessing and feature alignment used during training
+  - Returns a weekly demand prediction (units sold)
+- A feature schema ensures consistency between training and inference.
+
+---
+
+#### User Interface (Streamlit)
+
+- A simple web interface for entering product and store details.
+- Sends requests to the FastAPI endpoint.
+- Displays the predicted weekly units sold.
+- Intended for demonstration and exploration rather than operational use.
+
+---
+
+### How It Is Run
+
+- Each component runs in its own Docker container.
+- Containers communicate over HTTP.
+- Both services can be started together using Docker Compose.
+
+This setup separates the backend modelling logic from the user interface and ensures consistent execution across machines.
+
+---
+
+### Scope of Deployment
+
+The deployment demonstrates:
+
+- Model inference via an API
+- Separation of backend and frontend components
+- An end-to-end prediction workflow
+
+The model is intended as a technical demonstration rather than a production deployment.
+
+
+
 
 
 
