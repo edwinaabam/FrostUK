@@ -82,7 +82,7 @@ with st.sidebar:
 ### --- 5. TOP BANNER ---
 st.markdown("""
     <div style="
-        background-color:#5e81d1;
+        background-color:#ff8d27;
         padding: 10px 0px; 
         border-radius: 10px; 
         margin-bottom: 20px;
