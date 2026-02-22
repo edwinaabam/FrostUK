@@ -40,8 +40,8 @@ EXPECTED_FEATURES = [
 # --- 4. NAVIGATION SIDEBAR (Option Menu) ---
 with st.sidebar:
     # 1. Define Paths & URLs
-    logo_filename = "foodlogo.png"
-    logo_url = "https://github.com/edwinaabam/FrostUK/blob/main/inference/foodlogo.png"
+    logo_filename = "grocerylogo.png"
+    logo_url = "https://github.com/edwinaabam/FrostUK/blob/main/inference/grocerylogo.png"
     
     # Get local path relative to this script
     current_dir = Path(__file__).resolve().parent
