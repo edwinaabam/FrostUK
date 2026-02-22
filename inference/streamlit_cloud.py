@@ -37,18 +37,31 @@ EXPECTED_FEATURES = [
     "Region_South East", "Region_South West"
 ]
 
-# --- 4. NAVIGATION SIDEBAR ---
+# --- 4. NAVIGATION SIDEBAR (Option Menu) ---
 with st.sidebar:
+    # 1. Define Paths & URLs
+    logo_filename = "foodlogo.png"
+    logo_url = "https://github.com/edwinaabam/FrostUK/blob/main/inference/foodlogo.png?raw=true"
+    
+    # Get local path relative to this script
+    current_dir = Path(__file__).resolve().parent
+    local_logo_path = current_dir / logo_filename
+
+    # 2. Logo Logic (Local first, then Cloud Fallback)
     try:
-        current_dir = Path(__file__).resolve().parent
-        logo_path = current_dir / "foodlogo.png"
-        if logo_path.exists():
-            left_co, cent_co, last_co = st.columns([0.5, 3, 0.5])
-            with cent_co:
-                st.image(Image.open(logo_path), use_container_width=True)
-    except:
+        left_co, cent_co, last_co = st.columns([0.5, 3, 0.5])
+        with cent_co:
+            if local_logo_path.exists():
+                # Use local file if found
+                st.image(Image.open(local_logo_path), use_container_width=True)
+            else:
+                # Fallback to GitHub URL if local file is missing (e.g., on Cloud)
+                st.image(logo_url, use_container_width=True)
+    except Exception as e:
+        # If both fail, show nothing or a small error
         pass
 
+    # 3. The Option Menu (The rest remains the same)
     page = option_menu(
         menu_title="FrostUK Menu",
         options=["Forecast Demand", "About the App"],
@@ -66,10 +79,10 @@ with st.sidebar:
     st.divider()
     st.caption("FrostUK Supply Chain Management v1.2")
 
-# --- 5. TOP BANNER ---
+### --- 5. TOP BANNER ---
 st.markdown("""
     <div style="
-        background-color:#ff8d27;
+        background-color:#5e81d1;
         padding: 10px 0px; 
         border-radius: 10px; 
         margin-bottom: 20px;
@@ -83,10 +96,10 @@ st.markdown("""
         text-align: center; 
         margin: 0; 
         font-family: sans-serif; 
-        font-size: 22px; 
+        font-size: 20px; 
         white-space: nowrap;
     ">
-        FrostUK Perishable Goods Demand Prediction
+        🥦 FrostUK Perishable Goods Demand Prediction
     </h2>
     </div>
     """, unsafe_allow_html=True)
