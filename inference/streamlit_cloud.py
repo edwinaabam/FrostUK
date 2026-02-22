@@ -37,31 +37,29 @@ EXPECTED_FEATURES = [
     "Region_South East", "Region_South West"
 ]
 
-# --- 4. NAVIGATION SIDEBAR (Option Menu) ---
+# --- 4. NAVIGATION SIDEBAR ---
 with st.sidebar:
-    # 1. Define Paths & URLs
-    logo_filename = "foodlogo.png"
-    logo_url = "https://github.com/edwinaabam/FrostUK/blob/main/inference/foodlogo.png"
+    # Use the RAW version of the GitHub URL
+    logo_url = "https://raw.githubusercontent.com/edwinaabam/FrostUK/main/inference/foodlogo.png"
     
     # Get local path relative to this script
     current_dir = Path(__file__).resolve().parent
-    local_logo_path = current_dir / logo_filename
+    local_logo_path = current_dir / "foodlogo.png"
 
-    # 2. Logo Logic (Local first, then Cloud Fallback)
     try:
-        left_co, cent_co, last_co = st.columns([0.5, 3, 0.5])
+        # Use columns to control the size precisely
+        left_co, cent_co, last_co = st.columns([0.2, 1, 0.2])
         with cent_co:
             if local_logo_path.exists():
-                # Use local file if found
                 st.image(Image.open(local_logo_path), use_container_width=True)
             else:
-                # Fallback to GitHub URL if local file is missing (e.g., on Cloud)
-                st.image(logo_url, use_container_width=True)
+                # Fallback to the RAW GitHub URL
+                # We add a fallback error_badge if the URL fails too
+                st.image(logo_url, use_container_width=True, output_format="PNG")
     except Exception as e:
-        # If both fail, show nothing or a small error
-        pass
+        # If both fail, we show a simple emoji placeholder so the sidebar isn't empty
+        st.center("🥦")
 
-    # 3. The Option Menu (The rest remains the same)
     page = option_menu(
         menu_title="FrostUK Menu",
         options=["Forecast Demand", "About the App"],
@@ -75,9 +73,6 @@ with st.sidebar:
             "nav-link-selected": {"background-color": "#ff8d27", "color": "white"},
         }
     )
-    
-    st.divider()
-    st.caption("FrostUK Supply Chain Management v1.2")
 
 ### --- 5. TOP BANNER ---
 st.markdown("""
