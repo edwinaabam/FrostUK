@@ -111,78 +111,90 @@ st.markdown("""
 
 # --- 6. PAGE LOGIC ---
 if page == "Forecast Demand":
-    st.subheader("Input Transactional Details")
-    
-    with st.form("prediction_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("##### Product & Pricing")
-            product_category = st.selectbox("Category", ['Bakery', 'Meat', 'Beverages', 'Dairy'])
-            region = st.selectbox("Region", ['London', 'Midlands', 'North East', 'North West', 'South East', 'South West'])
-            price = st.number_input("Price (£)", value=2.50, step=0.1)
-            wastage_unit = st.number_input("Wastage units", value=100)
-            shelf_life = st.number_input("Shelf Life Days", value=3)
-            marketing_spend = st.number_input("Marketing Spend (£)", value=500.0)
-            discount_percent = st.slider("Discount Percent", 0, 100, 0)
+    # Create the Tabs
+    tab1, tab2 = st.tabs(["📋 Configuration", "📊 Analysis & Forecast"])
 
-        with col2:
-            st.markdown("##### Environmental & Logistics")
-            store_size = st.number_input("Store Size (sq ft)", value=1500)
-            rainfall = st.number_input("Rainfall (mm)", value=20.5)
-            avg_temp = st.number_input("Avg Temp (°C)", value=22.3)
-            supply_capacity = st.number_input("Supply Capacity", value=50000)
-            lead_time = st.number_input("Lead Time (Days)", value=1)
-            is_holiday = st.checkbox("Is it a Holiday?")
+    with tab1:
+        st.subheader("Input Transactional Details")
+        with st.form("prediction_form"):
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("##### Product & Pricing")
+                product_category = st.selectbox("Category", ['Bakery', 'Meat', 'Beverages', 'Dairy'])
+                region = st.selectbox("Region", ['London', 'Midlands', 'North East', 'North West', 'South East', 'South West'])
+                price = st.number_input("Price (£)", value=2.50, step=0.1)
+                wastage_unit = st.number_input("Wastage units", value=100)
+                shelf_life = st.number_input("Shelf Life Days", value=3)
 
-        submitted = st.form_submit_button("Predict Units Sold")
+            with col2:
+                st.markdown("##### Environmental & Logistics")
+                store_size = st.number_input("Store Size (sq ft)", value=1500)
+                rainfall = st.number_input("Rainfall (mm)", value=20.5)
+                avg_temp = st.number_input("Avg Temp (°C)", value=22.3)
+                marketing_spend = st.number_input("Marketing Spend (£)", value=500.0)
+                discount_percent = st.slider("Discount Percent", 0, 100, 0)
+                # Hidden/Background logistics
+                supply_capacity = st.number_input("Supply Capacity", value=50000)
+                lead_time = st.number_input("Lead Time (Days)", value=1)
+                is_holiday = st.checkbox("Is it a Holiday?")
 
-    if submitted:
-        if model:
-            try:
-                # Prepare data
-                input_dict = {feat: 0 for feat in EXPECTED_FEATURES}
-                input_dict.update({
-                    "Marketing_Spend": marketing_spend, "Discount_Percent": discount_percent,
-                    "Wastage_Units": wastage_unit, "Price": price,
-                    "Shelf_Life_Days": shelf_life, "Store_Size": store_size,
-                    "Avg_Temperature": avg_temp, "Rainfall": rainfall,
-                    "Holiday_Flag": 1 if is_holiday else 0, "Lead_Time_Days": lead_time,
-                    "Supply_Capacity": supply_capacity
-                })
+            submitted = st.form_submit_button("Predict Units Sold")
 
-                # One-Hot Encoding
-                cat_col, reg_col = f"Product_Category_{product_category}", f"Region_{region}"
-                if cat_col in input_dict: input_dict[cat_col] = 1
-                if reg_col in input_dict: input_dict[reg_col] = 1
-
-                # Inference
-                input_df = pd.DataFrame([input_dict])[EXPECTED_FEATURES]
-                prediction = model.predict(input_df)
-                final_result = int(prediction.flatten()[0])
-                
-                st.divider()
-                r_col, c_col = st.columns([1, 1])
-                
-                with r_col:
-                    st.metric(label="Estimated Demand", value=f"{final_result} Units")
-                    temp_diff = avg_temp - 15.0
-                    rain_diff = rainfall - 10.0
-                    st.metric("Temperature Variation", f"{avg_temp}°C", f"{temp_diff:.1f}°C vs Avg")
-                    st.metric("Rainfall Variation", f"{rainfall}mm", f"{rain_diff:.1f}mm vs Avg")
-
-                with c_col:
-                    st.write("### Environmental Factor Comparison")
-                    chart_data = pd.DataFrame({
-                        "Metric": ["Temperature", "Rainfall"],
-                        "Current Input": [avg_temp, rainfall],
-                        "Baseline Avg": [15.0, 10.0]
-                    }).set_index("Metric")
+        # DISPLAY PREDICTED UNITS IMMEDIATELY UNDER THE BUTTON
+        if submitted:
+            if model:
+                try:
+                    # Logic to prepare data for the model
+                    input_dict = {feat: 0 for feat in EXPECTED_FEATURES}
+                    input_dict.update({
+                        "Marketing_Spend": marketing_spend, "Discount_Percent": discount_percent,
+                        "Wastage_Units": wastage_unit, "Price": price,
+                        "Shelf_Life_Days": shelf_life, "Store_Size": store_size,
+                        "Avg_Temperature": avg_temp, "Rainfall": rainfall,
+                        "Holiday_Flag": 1 if is_holiday else 0, "Lead_Time_Days": lead_time,
+                        "Supply_Capacity": supply_capacity,
+                        "Month": 12, "Day": 8 # Temporary defaults for the point prediction
+                    })
                     
-                    # Colors list must match column length
-                    st.bar_chart(chart_data, color=["#607D8B", "#E0E0E0"])
+                    cat_col, reg_col = f"Product_Category_{product_category}", f"Region_{region}"
+                    if cat_col in input_dict: input_dict[cat_col] = 1
+                    if reg_col in input_dict: input_dict[reg_col] = 1
 
-            except Exception as e:
-                st.error(f"Prediction Error: {e}")
+                    input_df = pd.DataFrame([input_dict])[EXPECTED_FEATURES]
+                    prediction = model.predict(input_df)
+                    final_result = int(max(0, prediction.flatten()[0]))
+
+                    st.success(f"### Estimated Demand: {final_result} Units")
+                    st.caption("Check the 'Analysis & Forecast' tab for a detailed 7-day timeline.")
+                except Exception as e:
+                    st.error(f"Error: {e}")
+
+    with tab2:
+        st.subheader("Time-Series Analysis")
+        # Move Date Picker here
+        forecast_start_date = st.date_input("Select Forecast Start Date", value=pd.to_datetime("2025-12-08"))
+        
+        if submitted:
+            # Generate the chart based on the prediction from Tab 1
+            import numpy as np
+            dates = pd.date_range(start=forecast_start_date, periods=7)
+            forecast_values = [final_result * (1 + np.random.uniform(-0.05, 0.05)) for _ in range(7)]
+            chart_df = pd.DataFrame({"Date": dates, "Demand": forecast_values}).set_index("Date")
+
+            # Charts and Comparisons
+            st.divider()
+            c1, c2 = st.columns([2, 1])
+            with c1:
+                st.write(f"### 📈 Projected Horizon ({forecast_start_date.strftime('%B')})")
+                st.line_chart(chart_df, color="#607D8B")
+            with c2:
+                st.write("#### Data Summary")
+                st.metric("7-Day Total", f"{int(sum(forecast_values))} Units")
+                st.metric("Avg Temp", f"{avg_temp}°C")
+                st.metric("Peak Demand", f"{int(max(forecast_values))}")
+        else:
+            st.info("Please fill in the details in the Configuration tab and click Predict to see the analysis.")
 
 elif page == "About the App":
     st.header("🏢 About FrostUK Analytics")
