@@ -8,7 +8,7 @@ from streamlit_option_menu import option_menu
 # --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="FrostUK Demand Prediction",
-    page_icon="🥕",
+    page_icon="🥦",
     layout="wide"
 )
 
@@ -56,10 +56,10 @@ with st.sidebar:
         with cent_co:
             if local_logo_path.exists():
                 # Use local file if found
-                st.image(Image.open(local_logo_path), use_column_width=True)
+                st.image(Image.open(local_logo_path))
             else:
                 # Fallback to the RAW GitHub URL
-                st.image(logo_url, use_column_width=True)
+                st.image(logo_url)
 
                 
     except Exception as e:
@@ -71,13 +71,13 @@ with st.sidebar:
         menu_title="FrostUK Menu",
         options=["Forecast Demand", "About the App"],
         icons=["graph-up-arrow", "info-circle"],
-        menu_icon="cast",
+        menu_icon="basket",
         default_index=0,
         styles={
             "container": {"padding": "5!important", "background-color": "#fafafa"},
-            "icon": {"color": "#444", "font-size": "16px"}, 
+            "icon": {"color": "#4A6741", "font-size": "14px"}, 
             "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-            "nav-link-selected": {"background-color": "#ff8d27", "color": "white"},
+            "nav-link-selected": {"background-color": "#607D8B", "color": "white"},
         }
     )
     
@@ -87,7 +87,7 @@ with st.sidebar:
 ### --- 5. TOP BANNER ---
 st.markdown("""
     <div style="
-        background-color:#ff8d27;
+        background-color:#607D8B;
         padding: 10px 0px; 
         border-radius: 10px; 
         margin-bottom: 20px;
@@ -104,7 +104,7 @@ st.markdown("""
         font-size: 20px; 
         white-space: nowrap;
     ">
-        🥦 FrostUK Perishable Goods Demand Prediction
+         FrostUK Perishable Goods Demand Prediction
     </h2>
     </div>
     """, unsafe_allow_html=True)
@@ -179,7 +179,7 @@ if page == "Forecast Demand":
                     }).set_index("Metric")
                     
                     # Colors list must match column length
-                    st.bar_chart(chart_data, color=["#ff8d27", "#d3d3d3"])
+                    st.bar_chart(chart_data, color=["#607D8B", "#E0E0E0"])
 
             except Exception as e:
                 st.error(f"Prediction Error: {e}")
