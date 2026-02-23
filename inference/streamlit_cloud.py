@@ -68,7 +68,7 @@ with st.sidebar:
 
     # 3. The Option Menu
     page = option_menu(
-        menu_title="FrostUK Menu",
+        menu_title="Menu",
         options=["Forecast Demand", "About the App"],
         icons=["graph-up-arrow", "info-circle"],
         menu_icon="basket",
