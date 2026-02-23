@@ -180,14 +180,28 @@ if page == "Forecast Demand":
             import numpy as np
             dates = pd.date_range(start=forecast_start_date, periods=7)
             forecast_values = [final_result * (1 + np.random.uniform(-0.05, 0.05)) for _ in range(7)]
-            chart_df = pd.DataFrame({"Date": dates, "Demand": forecast_values}).set_index("Date")
+            
+            # --- CRITICAL FIX: Keep Date as a column (don't use set_index) ---
+            chart_df = pd.DataFrame({
+                "Date": dates, 
+                "Demand": forecast_values
+            })
 
             # Charts and Comparisons
             st.divider()
             c1, c2 = st.columns([2, 1])
             with c1:
-                st.write(f"### 📈 Projected Horizon ({forecast_start_date.strftime('%B')})")
-                st.line_chart(chart_df, color="#607D8B")
+                st.write(f"### 📈 Projected Horizon ({forecast_start_date.strftime('%B %d')})")
+                
+                # Explicitly passing Date and Demand columns
+                st.line_chart(
+                    chart_df, 
+                    x="Date", 
+                    y="Demand", 
+                    color="#607D8B"
+                )
+                st.caption("Tip: Hover over the dots to see exact daily units.")
+                
             with c2:
                 st.write("#### Data Summary")
                 st.metric("7-Day Total", f"{int(sum(forecast_values))} Units")
