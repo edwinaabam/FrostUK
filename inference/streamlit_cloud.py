@@ -201,6 +201,14 @@ if page == "Forecast Demand":
                     color="#607D8B"
                 )
                 st.caption("Tip: Hover over the dots to see exact daily units.")
+
+
+                # --- NEW: Explicit Data Table Toggle ---
+                with st.expander("📝 View Forecast Data Table"):
+                    # Formatting the date for the table to look cleaner
+                    display_df = chart_df.copy()
+                    display_df['Date'] = display_df['Date'].dt.strftime('%Y-%m-%d')
+                    st.dataframe(display_df.set_index('Date'), use_container_width=True)
                 
             with c2:
                 st.write("#### Data Summary")
