@@ -56,10 +56,12 @@ with st.sidebar:
         with cent_co:
             if local_logo_path.exists():
                 # Use local file if found
-                st.image(Image.open(local_logo_path), use_container_width=True)
+                st.image(Image.open(local_logo_path), use_column_width=True)
             else:
                 # Fallback to the RAW GitHub URL
-                st.image(logo_url, use_container_width=True)
+                st.image(logo_url, use_column_width=True)
+
+                
     except Exception as e:
         # Don't use 'pass' here, or you will never know why it failed!
         st.error(f"Image error: {e}")
