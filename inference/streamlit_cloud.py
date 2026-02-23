@@ -40,12 +40,15 @@ EXPECTED_FEATURES = [
 # --- 4. NAVIGATION SIDEBAR (Option Menu) ---
 with st.sidebar:
     # 1. Define Paths & URLs
-    logo_filename = "grocerylogo.png"
-    logo_url = "https://github.com/edwinaabam/FrostUK/blob/main/inference/grocerylogo.png"
+    # Use the RAW GitHub url, not the blob viewer url
+    logo_url = "https://raw.githubusercontent.com/edwinaabam/FrostUK/main/inference/grocerylogo.png"
     
     # Get local path relative to this script
     current_dir = Path(__file__).resolve().parent
-    local_logo_path = current_dir / logo_filename
+    
+    # IF your script is in the main FrostUK folder, we need to explicitly look inside "inference"
+    # IF your script is already inside the "inference" folder, change this to just: current_dir / "grocerylogo.png"
+    local_logo_path = current_dir / "inference" / "grocerylogo.png"
 
     # 2. Logo Logic (Local first, then Cloud Fallback)
     try:
@@ -55,13 +58,13 @@ with st.sidebar:
                 # Use local file if found
                 st.image(Image.open(local_logo_path), use_container_width=True)
             else:
-                # Fallback to GitHub URL if local file is missing (e.g., on Cloud)
+                # Fallback to the RAW GitHub URL
                 st.image(logo_url, use_container_width=True)
     except Exception as e:
-        # If both fail, show nothing or a small error
-        pass
+        # Don't use 'pass' here, or you will never know why it failed!
+        st.error(f"Image error: {e}")
 
-    # 3. The Option Menu (The rest remains the same)
+    # 3. The Option Menu
     page = option_menu(
         menu_title="FrostUK Menu",
         options=["Forecast Demand", "About the App"],
