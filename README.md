@@ -1,4 +1,4 @@
-# FrostUK
+# FrostMartUK
 ## Project Overview
 
 FrostMart is a large UK grocery retailer with over 800 stores nationwide, offering fresh produce, dairy, baked goods, and seasonal products such as Christmas and Easter specials. While these seasonal and perishable products are a major driver of customer loyalty and revenue, they also introduce significant operational challenges due to short shelf life, weather sensitivity, and unpredictable demand.
