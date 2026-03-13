@@ -6,7 +6,7 @@ from pathlib import Path
 
 # --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
-    page_title="FrostUK Demand Prediction",
+    page_title="FrostMartUK Perishable Demand Prediction",
     page_icon="🥦",
     layout="wide"
 )
@@ -70,7 +70,7 @@ with st.sidebar:
 st.markdown("""
     <div style="background-color:#607D8B; padding: 15px; border-radius: 10px; margin-bottom: 25px; text-align: center;">
         <h1 style="color: white; margin: 0; font-family: sans-serif; font-size: 26px;">
-            FrostUK Perishable Goods Demand Analytics
+            Perishable Goods Demand Prediction
         </h1>
     </div>
     """, unsafe_allow_html=True)
